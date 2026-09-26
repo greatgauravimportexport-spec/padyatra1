@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#A3172E">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚩</text></svg>">
+<title>પાવાગઢ પદયાત્રા – શ્રી ચામુંડા પગપાળા યાત્રા સંઘ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@500;700;800&family=Noto+Sans+Gujarati:wght@400;500;700&display=swap">
+<style>
+:root{
+  --bg:#FFF7EC; --surface:#FFFFFF; --surface-2:#FCEBD6; --ink:#2A1714; --ink-2:#6B4A40;
+  --line:#EBD3B8; --accent:#A3172E; --accent-ink:#FFFFFF; --gold:#D98A00; --gold-soft:#FFE7B0;
+  --ok:#2E7D4F; --warn:#B25B00;
+  --display:"Baloo Bhai 2","Noto Sans Gujarati",system-ui,sans-serif;
+  --body:"Noto Sans Gujarati","Baloo Bhai 2",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#1B1110; --surface:#261917; --surface-2:#34211C; --ink:#F7E9DC; --ink-2:#C9AC9C;
+    --line:#4A322A; --accent:#E0506A; --accent-ink:#1B1110; --gold:#F2B233; --gold-soft:#4A3514;
+    --ok:#6FCF97; --warn:#F2A65A;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#1B1110; --surface:#261917; --surface-2:#34211C; --ink:#F7E9DC; --ink-2:#C9AC9C;
+  --line:#4A322A; --accent:#E0506A; --accent-ink:#1B1110; --gold:#F2B233; --gold-soft:#4A3514;
+  --ok:#6FCF97; --warn:#F2A65A;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;padding-inline:16px;padding-block:0 96px}
+.wrap{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+h1,h2,h3{font-family:var(--display);line-height:1.2;margin:0;text-wrap:balance}
+a{color:var(--accent)}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+/* header */
+.head{padding-block:22px 4px;display:flex;flex-direction:column;gap:6px}
+.jay{font-family:var(--display);color:var(--accent);font-weight:700;font-size:15px;letter-spacing:.02em}
+.head h1{font-size:clamp(26px,7vw,34px);font-weight:800}
+.place{color:var(--ink-2);font-size:14px}
+.route{display:flex;align-items:center;gap:10px;margin-top:8px;flex-wrap:wrap}
+.route b{font-family:var(--display);font-size:18px}
+.route .path{flex:1;min-width:80px;height:2px;background:repeating-linear-gradient(90deg,var(--gold) 0 8px,transparent 8px 14px)}
+.daybadge{background:var(--gold-soft);color:var(--ink);border-radius:999px;padding:4px 12px;font-size:14px;font-weight:700;align-self:flex-start}
+
+/* rath */
+.rath{background:var(--accent);color:var(--accent-ink);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.rath .lbl{font-size:13px;opacity:.85;letter-spacing:.03em}
+.rath h2{font-size:24px}
+.rath .meta{font-size:14px;opacity:.9}
+.rath .btns{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:12px;padding:10px 14px;font-weight:700;font-size:15px;text-decoration:none;border:0;cursor:pointer;min-height:44px}
+.btn-light{background:var(--accent-ink);color:var(--accent)}
+.btn-ghost{background:transparent;color:inherit;border:1.5px solid currentColor}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-soft{background:var(--surface-2);color:var(--ink)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+
+/* tabs */
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.tab{flex:0 0 auto;border:1.5px solid var(--line);background:var(--surface);border-radius:12px;padding:6px 12px;cursor:pointer;display:flex;flex-direction:column;align-items:center;min-width:58px}
+.tab .n{font-family:var(--display);font-weight:800;font-size:20px;line-height:1.1}
+.tab .d{font-size:11px;color:var(--ink-2)}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tab[aria-selected="true"] .d{color:var(--bg);opacity:.8}
+.tab.today{border-color:var(--gold)}
+
+/* stops */
+.day{display:flex;flex-direction:column;gap:0}
+.dayhead{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.dayhead h2{font-size:22px}
+.dayhead span{color:var(--ink-2);font-size:14px}
+.stop{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;grid-template-columns:44px 1fr;gap:4px 12px}
+.stop .ic{grid-row:span 3;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:var(--surface-2)}
+.stop .kind{font-size:13px;color:var(--ink-2);font-weight:500}
+.stop h3{font-size:20px;font-weight:700}
+.stop .fac{font-size:14px;color:var(--ink-2)}
+.stop .row{grid-column:2;display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;align-items:center}
+.chip{font-size:13px;background:var(--gold-soft);border-radius:999px;padding:3px 10px;font-variant-numeric:tabular-nums}
+.empty h3{color:var(--ink-2);font-weight:500;font-size:17px}
+.leg{margin-left:21px;border-left:2px dashed var(--gold);padding:8px 0 8px 22px;font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.card h2{font-size:19px}
+.note{font-size:13px;color:var(--ink-2)}
+.me-out{font-size:15px}
+.me-out strong{font-family:var(--display);font-size:20px}
+
+/* sos bar */
+.sos{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:var(--bg);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));z-index:5}
+.sos .in{max-width:640px;margin:0 auto;display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.sos .num{font-family:var(--display);font-size:20px;font-weight:800;letter-spacing:.03em;user-select:all;font-variant-numeric:tabular-nums}
+.sos .t{font-size:12px;opacity:.8}
+.sos .acts{display:flex;gap:8px}
+.sos .btn{min-height:40px;padding:8px 12px;font-size:14px}
+.btn-sos{background:var(--gold);color:#1B1110}
+
+/* admin */
+.admin{border:2px solid var(--gold);background:var(--surface)}
+.admin h2{color:var(--warn)}
+fieldset{border:1px solid var(--line);border-radius:12px;padding:12px;margin:0;display:flex;flex-direction:column;gap:8px}
+legend{font-weight:700;padding:0 6px;font-family:var(--display)}
+label{font-size:14px;font-weight:500;display:flex;flex-direction:column;gap:4px}
+input,textarea{background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:10px;width:100%;font-size:16px}
+textarea{min-height:60px;resize:vertical}
+.hint{font-size:12px;color:var(--ink-2);font-weight:400}
+.msg{font-size:14px;font-weight:700}
+.msg.ok{color:var(--ok)} .msg.err{color:var(--accent)}
+.foot{text-align:center;color:var(--ink-2);font-size:13px;padding-block:8px}
+.foot b{color:var(--ink)}
+.status{font-size:12px;color:var(--ink-2);text-align:center}
+@media (prefers-reduced-motion:no-preference){.tab,.btn{transition:transform .12s}.btn:active{transform:scale(.97)}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="head">
+    <div class="jay">જય માં મહાકાળી · જય માં ચામુંડા</div>
+    <h1>શ્રી ચામુંડા પગપાળા યાત્રા સંઘ</h1>
+    <div class="place">વડસમા, તા. મહેસાણા, જિ. મહેસાણા</div>
+    <div class="route"><b>વડસમા</b><span class="path" aria-hidden="true"></span><b>પાવાગઢ</b></div>
+    <div class="daybadge" id="daybadge">૮ દિવસની પદયાત્રા</div>
+  </header>
+
+  <section class="rath" aria-labelledby="rathTitle">
+    <div class="lbl">🚩 માતાજીનો રથ હાલ અહીં છે</div>
+    <h2 id="rathTitle">—</h2>
+    <div class="meta" id="rathMeta">લોકેશન હજુ ઉમેરાયું નથી</div>
+    <div class="btns">
+      <a class="btn btn-light" id="rathMap" href="#" target="_blank" rel="noopener" hidden>🗺️ રથ સુધી રસ્તો (Google Maps)</a>
+    </div>
+  </section>
+
+  <nav class="tabs" id="tabs" role="tablist" aria-label="દિવસ"></nav>
+
+  <section class="day" id="day" aria-live="polite"></section>
+
+  <section class="card">
+    <h2>📍 હું ક્યાં છું? કેટલું દૂર?</h2>
+    <div class="me-out" id="meOut">બટન દબાવો. તમારા ફોનનું લોકેશન ચાલુ રાખો.</div>
+    <div class="btns" style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-primary" id="meBtn" type="button">મારું અંતર ચકાસો</button>
+      <a class="btn btn-soft" id="routeAll" href="#" target="_blank" rel="noopener">🛕 આખો રૂટ મેપ પર</a>
+    </div>
+    <div class="note">સૌથી સાચું અંતર અને રસ્તો જોવા માટે દરેક મુકામ પરનું “રસ્તો જુઓ” બટન દબાવો — Google Maps તમારા હાલના લોકેશનથી ચાલવાનો રસ્તો બતાવશે.</div>
+  </section>
+
+  <section class="card admin" id="admin" hidden>
+    <h2>🔧 એડમિન પેનલ</h2>
+    <div class="note">ફક્ત PIN જાણનાર એડમિન જ આ જુએ છે. સાચવતા જ બધા યાત્રિકોના ફોનમાં તરત બદલાશે.</div>
+
+    <fieldset>
+      <legend>🚩 રથનું લોકેશન</legend>
+      <label for="rName">જગ્યાનું નામ<input id="rName" placeholder="દા.ત. ઊંઝા હાઈવે, પેટ્રોલ પંપ પાસે"></label>
+      <label for="rLoc">Google Maps લિંક અથવા lat, lng
+        <input id="rLoc" inputmode="text" placeholder="23.5301, 72.3955">
+        <span class="hint">Google Maps માં જગ્યા પર લાંબું દબાવો → ઉપર દેખાતા આંકડા (23.53…, 72.39…) કોપી કરીને અહીં પેસ્ટ કરો.</span>
+      </label>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-primary" id="rGps" type="button">📍 મારું હાલનું લોકેશન રથ તરીકે સેવ કરો</button><button class="btn btn-soft" id="rSave" type="button">લખેલું લોકેશન સેવ કરો</button></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>📅 યાત્રા શરૂ તારીખ</legend>
+      <label for="startDate">દિવસ ૧ ની તારીખ<input id="startDate" type="date"></label>
+      <button class="btn btn-soft" id="dSave" type="button">તારીખ સાચવો</button>
+    </fieldset>
+
+    <fieldset>
+      <legend id="edLegend">દિવસ ૧ ના મુકામ</legend>
+      <div class="hint">ઉપરથી દિવસ પસંદ કરો, પછી અહીં વિગતો ભરો.</div>
+      <label for="aName">☀️ બપોરનો મુકામ — ગામ/જગ્યા<input id="aName"></label>
+      <label for="aLoc">લોકેશન (લિંક અથવા lat, lng) — વૈકલ્પિક<input id="aLoc"></label>
+      <label for="aFac">સુવિધા (પાણી, જમવાનું, શૌચાલય…)<input id="aFac"></label>
+      <label for="nName">🌙 રાત્રિ મુકામ — ગામ/જગ્યા<input id="nName"></label>
+      <label for="nLoc">લોકેશન (લિંક અથવા lat, lng) — વૈકલ્પિક<input id="nLoc"></label>
+      <label for="nFac">સુવિધા (ધર્મશાળા, શાળા, મંદિર…)<input id="nFac"></label>
+      <button class="btn btn-primary" id="daySave" type="button">આ દિવસ સાચવો</button>
+    </fieldset>
+    <div class="msg" id="aMsg" role="status"></div>
+  </section>
+
+  <div class="card" id="loginBox" hidden>
+    <label for="pin">એડમિન PIN<input id="pin" type="password" inputmode="numeric" autocomplete="off"></label>
+    <button class="btn btn-primary" id="loginBtn" type="button">લૉગિન</button>
+    <div class="msg err" id="loginMsg" role="status"></div>
+  </div>
+  <div class="status" id="status">માહિતી લોડ થાય છે…</div>
+  <footer class="foot">ટૂલ બનાવનાર: <b>ગૌરવસિંહ માનસિંહ ચાવડા</b><br><button type="button" id="adminLink" style="margin-top:8px;background:none;border:0;color:var(--ink-2);text-decoration:underline;cursor:pointer;font-size:13px">🔧 એડમિન લૉગિન</button></footer>
+</div>
+
+<div class="sos" role="region" aria-label="ઇમરજન્સી">
+  <div class="in">
+    <div><div class="t">🆘 ઇમરજન્સી / છૂટા પડી જાઓ તો</div><div class="num" id="sosNum">63541 61729</div></div>
+    <div class="acts">
+      <a class="btn btn-sos" href="tel:+916354161729" target="_top">📞 કૉલ</a>
+      <button class="btn btn-ghost" id="copyNum" type="button">કોપી</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const GU = "૦૧૨૩૪૫૬૭૮૯";
+  const gu = n => String(n).replace(/\d/g, d => GU[d]);
+  const $ = id => document.getElementById(id);
+  const DAYS = 8;
+  const START = "Vadasma, Mehsana, Gujarat";
+  const END = "Pavagadh Mahakali Temple, Gujarat";
+
+  const blank = () => ({ startDate:"", rath:null, days:Array.from({length:DAYS},()=>({afternoon:{name:"",loc:null,fac:""},night:{name:"",loc:null,fac:""}})) });
+  let state = blank();
+  let sel = 0, userSel = false, isAdmin = false, myPos = null;
+
+  function normalize(d){
+    const s = blank();
+    if(!d) return s;
+    s.startDate = typeof d.startDate === "string" ? d.startDate : "";
+    s.rath = d.rath && typeof d.rath === "object" ? d.rath : null;
+    if(Array.isArray(d.days)) d.days.slice(0,DAYS).forEach((x,i)=>{
+      ["afternoon","night"].forEach(k=>{ if(x && x[k]) s.days[i][k] = { name:String(x[k].name||""), fac:String(x[k].fac||""), loc: validLoc(x[k].loc) }; });
+    });
+    return s;
+  }
+  function validLoc(l){ return l && isFinite(l.lat) && isFinite(l.lng) ? {lat:+l.lat, lng:+l.lng} : null; }
+
+  function parseLoc(str){
+    str = (str||"").trim(); if(!str) return null;
+    const pats = [/!3d(-?\d+\.\d+)!4d(-?\d+\.\d+)/, /@(-?\d+\.\d+),\s*(-?\d+\.\d+)/, /[?&](?:q|ll|query|destination)=(-?\d+\.\d+)(?:,|%2C)\s*(-?\d+\.\d+)/i, /^\s*(-?\d{1,2}\.\d+)\s*[, ]\s*(-?\d{1,3}\.\d+)\s*$/];
+    for(const p of pats){ const m = str.match(p); if(m){ const lat=+m[1], lng=+m[2]; if(Math.abs(lat)<=90 && Math.abs(lng)<=180) return {lat,lng}; } }
+    return undefined; // text present but unreadable
+  }
+  const fmtLoc = l => l ? l.lat.toFixed(5)+", "+l.lng.toFixed(5) : "";
+
+  function km(a,b){
+    const R=6371, r=x=>x*Math.PI/180, dLa=r(b.lat-a.lat), dLo=r(b.lng-a.lng);
+    const h=Math.sin(dLa/2)**2+Math.cos(r(a.lat))*Math.cos(r(b.lat))*Math.sin(dLo/2)**2;
+    return 2*R*Math.asin(Math.sqrt(h));
+  }
+  const kmTxt = k => k < 1 ? gu(Math.round(k*1000))+" મીટર" : gu(k.toFixed(1))+" કિમી";
+  function dir(a,b){
+    const r=x=>x*Math.PI/180, y=Math.sin(r(b.lng-a.lng))*Math.cos(r(b.lat)), x=Math.cos(r(a.lat))*Math.sin(r(b.lat))-Math.sin(r(a.lat))*Math.cos(r(b.lat))*Math.cos(r(b.lng-a.lng));
+    const deg=(Math.atan2(y,x)*180/Math.PI+360)%360;
+    return ["ઉત્તર","ઈશાન","પૂર્વ","અગ્નિ","દક્ષિણ","નૈઋત્ય","પશ્ચિમ","વાયવ્ય"][Math.round(deg/45)%8];
+  }
+  const target = s => s.loc ? s.loc.lat+","+s.loc.lng : (s.name ? s.name+", Gujarat" : "");
+  const mapsDir = dest => "https://www.google.com/maps/dir/?api=1&travelmode=walking&destination="+encodeURIComponent(dest);
+
+  function dayDate(i){
+    if(!state.startDate) return null;
+    const d = new Date(state.startDate+"T00:00:00"); d.setDate(d.getDate()+i); return d;
+  }
+  const MON=["જાન્યુ","ફેબ્રુ","માર્ચ","એપ્રિલ","મે","જૂન","જુલાઈ","ઑગસ્ટ","સપ્ટે","ઑક્ટો","નવે","ડિસે"];
+  const dShort = d => gu(d.getDate())+" "+MON[d.getMonth()];
+  function todayIndex(){
+    if(!state.startDate) return -1;
+    const t=new Date(); t.setHours(0,0,0,0);
+    const i=Math.round((t-new Date(state.startDate+"T00:00:00"))/864e5);
+    return i;
+  }
+  function ago(iso){
+    const m = Math.round((Date.now()-new Date(iso).getTime())/60000);
+    if(!isFinite(m)) return "";
+    if(m<1) return "હમણાં જ"; if(m<60) return gu(m)+" મિનિટ પહેલાં";
+    const h=Math.round(m/60); if(h<24) return gu(h)+" કલાક પહેલાં";
+    return gu(Math.round(h/24))+" દિવસ પહેલાં";
+  }
+
+  function el(tag, cls, text){ const e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e; }
+
+  function render(){
+    const ti = todayIndex();
+    if(!userSel) sel = ti>=0 && ti<DAYS ? ti : (ti>=DAYS ? DAYS-1 : 0);
+    $("daybadge").textContent = ti>=0 && ti<DAYS ? "આજે દિવસ "+gu(ti+1)+" / "+gu(DAYS) : (ti<0 && state.startDate ? "યાત્રા શરૂ: "+dShort(dayDate(0)) : (ti>=DAYS ? "યાત્રા પૂર્ણ · જય માં મહાકાળી" : "૮ દિવસની પદયાત્રા"));
+
+    // rath
+    const r = state.rath;
+    if(r && (r.loc || r.name)){
+      $("rathTitle").textContent = r.name || fmtLoc(r.loc);
+      let meta = r.updatedAt ? "અપડેટ: "+ago(r.updatedAt) : "";
+      if(myPos && r.loc) meta += (meta?" · ":"")+"તમારાથી "+kmTxt(km(myPos,r.loc))+" "+dir(myPos,r.loc)+" દિશામાં";
+      $("rathMeta").textContent = meta || " ";
+      $("rathMap").href = mapsDir(target(r)); $("rathMap").hidden = false;
+    } else {
+      $("rathTitle").textContent = "લોકેશન હજુ ઉમેરાયું નથી";
+      $("rathMeta").textContent = "એડમિન રથ સાથે ચાલતાં લોકેશન અપડેટ કરશે.";
+      $("rathMap").hidden = true;
+    }
+
+    // tabs
+    const tabs=$("tabs"); tabs.textContent="";
+    for(let i=0;i<DAYS;i++){
+      const b=el("button","tab"); b.type="button"; b.setAttribute("role","tab"); b.setAttribute("aria-selected", i===sel);
+      if(i===ti) b.classList.add("today");
+      b.append(el("span","n",gu(i+1)));
+      const dd=dayDate(i); b.append(el("span","d", i===ti ? "આજે" : (dd? dShort(dd) : "દિવસ")));
+      b.onclick=()=>{ sel=i; userSel=true; render(); };
+      tabs.append(b);
+    }
+    const act = tabs.children[sel]; if(act && act.scrollIntoView) act.scrollIntoView({block:"nearest",inline:"center"});
+
+    // day
+    const day=$("day"); day.textContent="";
+    const hd=el("div","dayhead"); hd.append(el("h2",null,"દિવસ "+gu(sel+1)+" ના મુકામ"));
+    const dd=dayDate(sel); if(dd) hd.append(el("span",null, dd.toLocaleDateString("gu-IN",{weekday:"long",day:"numeric",month:"long"})));
+    day.append(hd);
+    const D=state.days[sel];
+    const prevNight = sel>0 ? state.days[sel-1].night : null;
+    if(prevNight && prevNight.loc && D.afternoon.loc) day.append(el("div","leg","ગઈ રાતના મુકામથી આશરે "+kmTxt(km(prevNight.loc,D.afternoon.loc))+" (સીધી લાઇનમાં)"));
+    day.append(stopCard("☀️","બપોરનો મુકામ (ભોજન/વિશ્રામ)",D.afternoon));
+    if(D.afternoon.loc && D.night.loc) day.append(el("div","leg","બપોરથી રાત્રિ મુકામ આશરે "+kmTxt(km(D.afternoon.loc,D.night.loc))+" (સીધી લાઇનમાં)"));
+    else day.append(el("div","leg"," "));
+    day.append(stopCard("🌙","રાત્રિ મુકામ",D.night));
+
+    // whole route
+    const wps = state.days.map(x=>target(x.night)).filter(Boolean).slice(0,8);
+    $("routeAll").href = "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin="+encodeURIComponent(START)+"&destination="+encodeURIComponent(END)+(wps.length?"&waypoints="+encodeURIComponent(wps.join("|")):"");
+
+    fillEditor();
+  }
+
+  function stopCard(icon, kind, s){
+    const c=el("div","stop"+(s.name?"":" empty"));
+    c.append(el("div","ic",icon), el("div","kind",kind), el("h3",null, s.name || "હજુ નક્કી થવાનું બાકી"));
+    c.append(el("div","fac", s.fac ? "સુવિધા: "+s.fac : (s.name ? "" : "એડમિન ટૂંક સમયમાં ઉમેરશે.")));
+    const row=el("div","row");
+    if(myPos && s.loc) row.append(el("span","chip","તમારાથી "+kmTxt(km(myPos,s.loc))+" · "+dir(myPos,s.loc)));
+    if(s.name || s.loc){
+      const a=el("a","btn btn-soft","🗺️ રસ્તો જુઓ"); a.href=mapsDir(target(s)); a.target="_blank"; a.rel="noopener"; row.append(a);
+    }
+    if(row.childNodes.length) c.append(row);
+    return c;
+  }
+
+  // ---- my distance (best effort; many views block GPS) ----
+  $("meBtn").onclick = () => {
+    const out=$("meOut");
+    if(!navigator.geolocation){ out.textContent="આ ફોનમાં અહીંથી લોકેશન મળતું નથી. નીચે “રસ્તો જુઓ” બટન વાપરો."; return; }
+    out.textContent="લોકેશન શોધાય છે…";
+    let done=false;
+    const fail=()=>{ if(done) return; done=true; out.textContent="અહીંથી લોકેશન મળ્યું નહીં. દરેક મુકામ કે રથ પરનું “રસ્તો જુઓ” બટન દબાવો — Google Maps તમારું લાઈવ અંતર બતાવશે."; };
+    setTimeout(fail, 12000);
+    try{
+      navigator.geolocation.getCurrentPosition(p=>{
+        if(done) return; done=true;
+        myPos={lat:p.coords.latitude,lng:p.coords.longitude};
+        const r=state.rath;
+        out.textContent="";
+        out.append("તમારું લોકેશન મળી ગયું ✅ ");
+        if(r&&r.loc){ out.append(document.createElement("br"),"રથ: "); out.append(el("strong",null,kmTxt(km(myPos,r.loc)))); out.append(" ("+dir(myPos,r.loc)+" દિશામાં, સીધી લાઇનમાં)"); }
+        render();
+      }, fail, {enableHighAccuracy:true, timeout:10000, maximumAge:30000});
+    }catch(e){ fail(); }
+  };
+
+  // ---- copy number ----
+  $("copyNum").onclick = async () => {
+    const b=$("copyNum");
+    try{ await navigator.clipboard.writeText("6354161729"); b.textContent="કોપી થયું ✓"; }
+    catch(e){ const r=document.createRange(); r.selectNodeContents($("sosNum")); const s=getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent="સિલેક્ટ થયું"; }
+    setTimeout(()=>b.textContent="કોપી",2000);
+  };
+
+  // ---- admin ----
+  let editorFor=-1;
+  function fillEditor(){
+    if(!isAdmin) return;
+    $("startDate").value = state.startDate || "";
+    if(editorFor===sel) return;
+    editorFor=sel;
+    const D=state.days[sel];
+    $("edLegend").textContent="દિવસ "+gu(sel+1)+" ના મુકામ";
+    $("aName").value=D.afternoon.name; $("aLoc").value=fmtLoc(D.afternoon.loc); $("aFac").value=D.afternoon.fac;
+    $("nName").value=D.night.name; $("nLoc").value=fmtLoc(D.night.loc); $("nFac").value=D.night.fac;
+    if(state.rath && !$("rName").value && !$("rLoc").value){ $("rName").value=state.rath.name||""; $("rLoc").value=fmtLoc(state.rath.loc); }
+  }
+  function msg(t, ok){ const m=$("aMsg"); m.textContent=t; m.className="msg "+(ok?"ok":"err"); }
+  let saving=false;
+  async function save(next, okText){
+    if(saving) return;
+    saving=true; document.querySelectorAll(".admin .btn").forEach(b=>b.disabled=true);
+    try{
+      const r = await api("save", {pin:adminPin, data:next});
+      if(!r || !r.ok){ msg(r && r.error==="pin" ? "PIN ખોટો છે. ફરી લૉગિન કરો." : "સાચવી શકાયું નહીં. ફરી પ્રયાસ કરો.", false); return; }
+      state=normalize(next); editorFor=-1; render(); msg(okText,true);
+    }catch(e){ msg("નેટવર્ક સમસ્યા. ઇન્ટરનેટ ચાલુ કરી ફરી સાચવો.", false); }
+    finally{ saving=false; document.querySelectorAll(".admin .btn").forEach(b=>b.disabled=false); }
+  }
+  const clone = () => JSON.parse(JSON.stringify(state));
+
+  $("rSave").onclick = () => {
+    const name=$("rName").value.trim(), loc=parseLoc($("rLoc").value);
+    if(loc===undefined) return msg("લોકેશન સમજાયું નહીં. “23.5301, 72.3955” જેવા આંકડા પેસ્ટ કરો.", false);
+    if(!name && !loc) return msg("જગ્યાનું નામ અથવા લોકેશન ભરો.", false);
+    const n=clone(); n.rath={name, loc:loc||null, updatedAt:new Date().toISOString()};
+    save(n,"રથનું લોકેશન અપડેટ થયું ✓");
+  };
+  $("dSave").onclick = () => { const n=clone(); n.startDate=$("startDate").value||""; userSel=false; save(n,"તારીખ સચવાઈ ✓"); };
+  $("daySave").onclick = () => {
+    const aL=parseLoc($("aLoc").value), nL=parseLoc($("nLoc").value);
+    if(aL===undefined||nL===undefined) return msg("લોકેશન સમજાયું નહીં. “23.5301, 72.3955” જેવા આંકડા અથવા Google Maps ની લાંબી લિંક પેસ્ટ કરો.", false);
+    const n=clone();
+    n.days[sel]={ afternoon:{name:$("aName").value.trim(),loc:aL||null,fac:$("aFac").value.trim()}, night:{name:$("nName").value.trim(),loc:nL||null,fac:$("nFac").value.trim()} };
+    save(n,"દિવસ "+gu(sel+1)+" સચવાયો ✓");
+  };
+
+  // ---- backend: Google Apps Script ----
+  // If this page is hosted OUTSIDE Apps Script (GitHub Pages etc.), paste your /exec URL here:
+  const API_URL = "https://script.google.com/macros/s/AKfycbxWlEZWtDYLmGoe58-vKbV5O7eVNPp6uJBVuPfLjV3JPPhPvAFekqaHznhAHX3gE2slVg/exec";
+  const inGAS = !!(window.google && google.script && google.script.run);
+  function gas(fn, ...args){ return new Promise((res,rej)=>google.script.run.withSuccessHandler(res).withFailureHandler(rej)[fn](...args)); }
+  async function api(action, p){
+    if(inGAS){
+      if(action==="get") return {ok:true, data: await gas("getData")};
+      if(action==="check") return {ok: await gas("checkPin", p.pin)};
+      if(action==="save") return await gas("saveData", p.pin, p.data);
+    }
+    if(!API_URL) throw new Error("no backend");
+    if(action==="get"){ const r=await fetch(API_URL+"?api=1&t="+Date.now()); return r.json(); }
+    const r=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(Object.assign({action},p))});
+    return r.json();
+  }
+  let lastRaw="";
+  async function load(){
+    try{
+      const r = await api("get");
+      const raw = JSON.stringify(r && r.data || null);
+      if(raw!==lastRaw){ lastRaw=raw; state=normalize(r.data); render(); }
+      $("status").textContent = "લાઈવ · દર ૩૦ સેકન્ડે આપોઆપ અપડેટ";
+    }catch(e){ $("status").textContent = "માહિતી મળી નહીં. ઇન્ટરનેટ ચાલુ છે કે નહીં તે તપાસો."; }
+  }
+
+  // ---- admin login with PIN ----
+  let adminPin="";
+  function lsGet(k){ try{return localStorage.getItem(k)||"";}catch(e){return "";} }
+  function lsSet(k,v){ try{ v?localStorage.setItem(k,v):localStorage.removeItem(k);}catch(e){} }
+  function showAdmin(on){ isAdmin=on; $("admin").hidden=!on; $("loginBox").hidden=true; $("adminLink").textContent = on ? "એડમિનમાંથી લૉગઆઉટ" : "🔧 એડમિન લૉગિન"; editorFor=-1; if(on) fillEditor(); }
+  $("adminLink").onclick = () => { if(isAdmin){ adminPin=""; lsSet("padyatraPin",""); showAdmin(false); } else { $("loginBox").hidden=!$("loginBox").hidden; if(!$("loginBox").hidden) $("pin").focus(); } };
+  $("loginBtn").onclick = async () => {
+    const p=$("pin").value.trim(); if(!p) return;
+    $("loginMsg").textContent="ચકાસાય છે…";
+    try{ const r=await api("check",{pin:p}); if(r&&r.ok){ adminPin=p; lsSet("padyatraPin",p); $("pin").value=""; $("loginMsg").textContent=""; showAdmin(true); } else $("loginMsg").textContent="PIN ખોટો છે."; }
+    catch(e){ $("loginMsg").textContent="નેટવર્ક સમસ્યા."; }
+  };
+  (async()=>{ const p=lsGet("padyatraPin"); if(p){ try{ const r=await api("check",{pin:p}); if(r&&r.ok){ adminPin=p; showAdmin(true);} }catch(e){} } })();
+
+  // ---- Rath: use this phone's GPS (works when hosted with https) ----
+  $("rGps").onclick = () => {
+    if(!navigator.geolocation) return msg("આ ફોનમાં GPS મળ્યું નહીં. લોકેશન પેસ્ટ કરો.", false);
+    msg("GPS લોકેશન શોધાય છે…", true);
+    navigator.geolocation.getCurrentPosition(p=>{
+      $("rLoc").value = p.coords.latitude.toFixed(5)+", "+p.coords.longitude.toFixed(5);
+      $("rSave").click();
+    }, ()=>msg("GPS મળ્યું નહીં. ફોનમાં Location ચાલુ કરો અથવા લોકેશન પેસ્ટ કરો.", false), {enableHighAccuracy:true, timeout:15000});
+  };
+
+  render();
+  load();
+  setInterval(load, 30000);
+  setInterval(()=>{ if(state.rath && state.rath.updatedAt) render(); }, 60000);
+})();
+</script>
+
+</body>
+</html>
